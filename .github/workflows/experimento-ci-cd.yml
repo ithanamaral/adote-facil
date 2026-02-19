@@ -17,10 +17,17 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4  # Faz o download do repositório no runner
 
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
       - name: Instalar dependências do backend
         run: |
           cd backend              # Acessa a pasta do backend
-          npm install             # Instala as dependências do Node.js
+          npm ci                  # Instala as dependências de forma limpa e rápida (baseado no lockfile)
 
       - name: Executar testes unitários com Jest
         run: |
