@@ -2,7 +2,8 @@
 
 Este documento detalha as otimizações implementadas no pipeline de CI/CD e na estrutura de containers do projeto, visando performance, segurança e manutenibilidade.
 
-## 1. Otimização do Dockerfile (Backend)
+<details>
+<summary><strong>1. Otimização do Dockerfile (Backend)</strong></summary>
 
 **Melhoria:** Implementação de *Multi-stage Build*.
 **Objetivo:** Reduzir o tamanho da imagem final e remover código fonte e dependências de desenvolvimento do ambiente de produção.
@@ -48,8 +49,12 @@ EXPOSE 8080
 
 CMD ["npm", "start"]
 ```
+</details>
 
-## 2. Melhorias no Pipeline CI/CD (GitHub Actions)
+<details>
+<summary><strong>
+2. Melhorias no Pipeline CI/CD (GitHub Actions)
+</strong></summary>
 
 **Melhoria:** Uso de `npm ci` e Cache.
 **Objetivo:** Acelerar o tempo de execução do pipeline e garantir instalações determinísticas.
@@ -73,9 +78,12 @@ CMD ["npm", "start"]
     npm ci  # Instalação limpa e rápida
 ```
 
-## 3. Arquivo .dockerignore
+</details>
+
+<details>
+<summary><strong>3. Arquivo .dockerignore</strong> </summary>
 
 **Melhoria:** Configuração correta do `.dockerignore`.
 **Objetivo:** Evitar que arquivos locais que são desnecessários e grandes (como `node_modules`, `.git`, `.env`) sejam copiados para dentro da imagem Docker, o que deixaria o build lento e a imagem insegura.
 
-
+</details>
